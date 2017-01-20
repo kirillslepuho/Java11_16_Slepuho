@@ -17,7 +17,8 @@ public class CommandProvider {
 
 	private HashMap<CommandsNames, Command> repository = new HashMap<>();
 
-	CommandProvider() {
+	CommandProvider() {// public класс и friendly конструктор, причем единственный конструктор
+		// и над кем так изощренно издеваемся?
 		repository.put(CommandsNames.ADD_SPORTEQUIPMENT, new AddSportEquipment());
 		repository.put(CommandsNames.DELETE_SPORTEQUIPMENT, new DeleteSportEquipment());
 		repository.put(CommandsNames.DELETE_USER, new DeleteUser());
