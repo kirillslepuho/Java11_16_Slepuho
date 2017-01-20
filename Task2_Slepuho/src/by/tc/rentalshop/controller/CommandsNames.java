@@ -1,6 +1,6 @@
 package by.tc.rentalshop.controller;
 
-public enum CommandsNames {
+public enum CommandsNames {// почему название во множественном числе?
 	
 	ADD_SPORTEQUIPMENT, EDIT_SPORTEQUIPMENT, DELETE_SPORTEQUIPMENT, 
 	REGISTRATION, SIGN_IN, EDIT_USER, DELETE_USER, 
