@@ -30,7 +30,7 @@ public class AnalyzerDAOImpl implements AnalyzerDAO {
 				bufferedReader.close();
 			}
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			System.out.println(e.getMessage());
 		}
         return tokensArray;
 	}

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import by.tc.analyzer.bean.entity.Attribute;
 import by.tc.analyzer.bean.entity.NodeInfo;
 import by.tc.analyzer.bean.enums.NodeType;
 import by.tc.analyzer.dao.AnalyzerDAO;
@@ -32,14 +33,20 @@ public class AnalyzerServiceImpl implements AnalyzerService {
 		
 		Matcher openTag = getMatcher("<(([^>/]|\n)*)>", token);
 		Matcher closeTag = getMatcher("<(/(([^>]|\n)*))>", token);
+		Matcher nameTag = getMatcher("<(([^>?=])*)( |>)",token);
 		
 		if(isTag(token)){
-			if(openTag.find()){
-				nodeInfo.setContent(openTag.group(1));
+			if(openTag.find() && nameTag.find()){
+				
+				nodeInfo.setContent(nameTag.group(1));
 				nodeInfo.setType(NodeType.Open_Tag);
+				nodeInfo.setAttributes(getAttributes(openTag.group(1)));
+				
 			}else if(closeTag.find()){
+				
 				nodeInfo.setContent(closeTag.group(2));
 				nodeInfo.setType(NodeType.Close_Tag);
+				
 			}
 			
 			
@@ -69,6 +76,21 @@ public class AnalyzerServiceImpl implements AnalyzerService {
 		Matcher m = regexpn.matcher(path);
 		return m;
 
+	}
+	
+	private static ArrayList<Attribute> getAttributes(String token){
+		Matcher attributeMatcher = getMatcher("[ ](.*?)=(['\"])(.*?)\\2",token);
+		ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+
+		while(attributeMatcher.find()){
+			Attribute attribute = new Attribute();
+            attribute.setName(attributeMatcher.group(1));
+            attribute.setData(attributeMatcher.group(3));
+            attributes.add(attribute);
+		}
+		
+		return attributes;
+		
 	}
 
 }
