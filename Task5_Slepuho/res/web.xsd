@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://training.by" xmlns="http://training.by" elementFormDefault="qualified">
+
+<xsd:element name="web-app">
+	<xsd:complexType>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+
+			<xsd:element name="display-name" type="xsd:string" />
+
+			<xsd:element name="welcome-file-list">
+				<xsd:complexType>
+					<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+						<xsd:element name="welcome-file" type="xsd:string" minOccurs="1" maxOccurs="unbounded" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="filter">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="filter-name" type="xsd:string" />
+						<xsd:element name="filter-class" type="xsd:string" />
+						<xsd:element name="init-param" type="init-param-type" minOccurs="0" maxOccurs="unbounded" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="filter-mapping">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="filter-name" type="xsd:string" />
+						<xsd:element name="url-pattern" type="xsd:string" />
+						<xsd:element name="dispatcher" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="listener">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="listener-class" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+
+			<xsd:element name="servlet">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="servlet-name" type="xsd:string" />
+						<xsd:element name="servlet-class" type="xsd:string" />
+						<xsd:element name="init-param" type="init-param-type" minOccurs="0" maxOccurs="unbounded" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="servlet-mapping">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="servlet-name" type="xsd:string" />
+						<xsd:element name="url-pattern" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="error-page">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:choice>
+							<xsd:element name="exception-type" type="xsd:string" />
+							<xsd:element name="error-code" type="xsd:integer" />
+						</xsd:choice>
+						<xsd:element name="location" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+		</xsd:choice>
+
+		<xsd:attribute name="id" type="xsd:string" use="required" />
+		<xsd:attribute name="version" type="xsd:string" use="required" />
+
+	</xsd:complexType>
+</xsd:element>
+
+	<!-- INIT-PARAM TYPE -->
+	<xsd:complexType name="init-param-type">
+		<xsd:sequence>
+			<xsd:element name="param-name" type="xsd:string" />
+			<xsd:element name="param-value" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- INIT-PARAM TYPE -->
+
+</xsd:schema>
