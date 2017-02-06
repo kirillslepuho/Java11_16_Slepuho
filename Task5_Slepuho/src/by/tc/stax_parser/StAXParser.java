@@ -56,7 +56,7 @@ public class StAXParser implements Parser{
 
 			inputStream = new FileInputStream(xmlFile);
 			xmlStreamReader = xmlInputFactory.createXMLStreamReader(inputStream);
-			parseXML().print(0);
+			parseWebApp().print(0);
 
 		} catch (XMLStreamException e) {
 			System.out.println(e.getMessage());
@@ -72,7 +72,7 @@ public class StAXParser implements Parser{
 		}
 	}
 
-	private WebApp parseXML() throws XMLStreamException {
+	public WebApp parseWebApp() throws XMLStreamException {
 
 		WebApp root = new WebApp();
 

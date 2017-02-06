@@ -18,7 +18,7 @@ public class Main {
 			System.out.println(e.getMessage());
 		}
 
-		Parser DOMParser = xmlParserFactory.getDOMParser();
+		/*Parser DOMParser = xmlParserFactory.getDOMParser();
 		try {
 			DOMParser.setXMLFile("res/web.xml");
 			DOMParser.parse();
@@ -32,7 +32,7 @@ public class Main {
 			StAXParser.parse();
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
-		}
+		}*/
 
 	}
 
