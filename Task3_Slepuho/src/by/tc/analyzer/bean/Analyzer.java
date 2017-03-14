@@ -8,6 +8,7 @@ import java.util.List;
 
 import by.tc.analyzer.bean.entity.NodeInfo;
 import by.tc.analyzer.service.AnalyzerService;
+import by.tc.analyzer.service.exception.ServiceException;
 import by.tc.analyzer.service.factory.ServiceFactory;
 
 public class Analyzer {
@@ -35,14 +36,11 @@ public void setFileName(String fileName) {
 	this.fileName = fileName;
 }
 
-public List<NodeInfo> getList() {
-	ArrayList<NodeInfo> nodes = analyzerService.getNodes(fileName);
+public List<NodeInfo> getList() throws ServiceException {
+	ArrayList<NodeInfo> nodes = null;
+	nodes = analyzerService.getNodes(fileName);
 	return nodes;
 }
-
-
-
-
 
 
 

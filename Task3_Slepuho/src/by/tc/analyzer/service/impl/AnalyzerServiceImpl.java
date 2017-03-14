@@ -9,8 +9,10 @@ import by.tc.analyzer.bean.entity.Attribute;
 import by.tc.analyzer.bean.entity.NodeInfo;
 import by.tc.analyzer.bean.enums.NodeType;
 import by.tc.analyzer.dao.AnalyzerDAO;
+import by.tc.analyzer.dao.exception.DAOException;
 import by.tc.analyzer.dao.factory.DAOFactory;
 import by.tc.analyzer.service.AnalyzerService;
+import by.tc.analyzer.service.exception.ServiceException;
 
 
 public class AnalyzerServiceImpl implements AnalyzerService {
@@ -59,9 +61,15 @@ public class AnalyzerServiceImpl implements AnalyzerService {
 		return nodeInfo;
 	}
 
-	public ArrayList<NodeInfo> getNodes(String fileName){
+	public ArrayList<NodeInfo> getNodes(String fileName) throws ServiceException{
           ArrayList<NodeInfo> nodes = new ArrayList<NodeInfo>();
-          ArrayList<String> tokens = analyzerDAO.getTokens(fileName);
+          
+          ArrayList<String> tokens;
+		try {
+			tokens = analyzerDAO.getTokens(fileName);
+		} catch (DAOException e) {
+            throw new ServiceException(e);
+		}
           
           for (int i = 0; i < tokens.size(); i++) {
      		NodeInfo nodeInfo = getNode(tokens.get(i));

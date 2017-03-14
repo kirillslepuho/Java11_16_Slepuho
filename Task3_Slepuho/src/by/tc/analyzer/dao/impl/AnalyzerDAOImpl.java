@@ -8,10 +8,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import by.tc.analyzer.dao.AnalyzerDAO;
+import by.tc.analyzer.dao.exception.DAOException;
 
 public class AnalyzerDAOImpl implements AnalyzerDAO {
 	
-	public ArrayList<String> getTokens(String fileName){
+	public ArrayList<String> getTokens(String fileName) throws DAOException{
 		ArrayList<String> tokensArray = new ArrayList<String>();
 		
 		try {
@@ -30,7 +31,7 @@ public class AnalyzerDAOImpl implements AnalyzerDAO {
 				bufferedReader.close();
 			}
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			throw new DAOException(e);
 		}
         return tokensArray;
 	}

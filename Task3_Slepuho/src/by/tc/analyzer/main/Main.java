@@ -9,6 +9,7 @@ import java.util.List;
 import by.tc.analyzer.bean.Analyzer;
 import by.tc.analyzer.bean.entity.Attribute;
 import by.tc.analyzer.bean.entity.NodeInfo;
+import by.tc.analyzer.service.exception.ServiceException;
 
 public class Main {
 
@@ -17,7 +18,12 @@ public class Main {
 		Analyzer a = new Analyzer();
 		a.setFileName("res//breakfastMenu.xml");
 		
-		List<NodeInfo> nodes= a.getList();
+		List<NodeInfo> nodes = null;
+		try {
+			nodes = a.getList();
+		} catch (ServiceException e) {
+            System.err.println(e.getMessage());
+		}
 		Iterator<NodeInfo> nodesIterator = nodes.iterator();
 		while(nodesIterator.hasNext()){
 			NodeInfo nodeInfo = nodesIterator.next();
