@@ -11,7 +11,7 @@ import by.tc.rentalshop.service.exception.ServiceException;
 
 public class ShopServiceImpl implements ShopService {
 
-	DAOFactory daoFactory = DAOFactory.getInstance();
+	DAOFactory daoFactory = DAOFactory.getInstance();// а модификаторы доступа ты куда подевал?
 	SportEquipmentDAO sportEquipmentDAO = daoFactory.getSportEquipmentsDAO();
 	UserDAO userDAO = daoFactory.getUserDAO();
 

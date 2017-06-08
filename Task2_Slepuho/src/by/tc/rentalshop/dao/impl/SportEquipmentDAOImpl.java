@@ -11,7 +11,7 @@ import by.tc.rentalshop.dao.exception.DAOException;
 
 public class SportEquipmentDAOImpl implements SportEquipmentDAO {
 
-	private java.sql.Connection connection;
+	private java.sql.Connection connection;// заведя здесь поле экземпляра класса ты убил все кормальные возможости использовать од в многопоточном приложении
 
 	public SportEquipmentDAOImpl() {
 
@@ -23,7 +23,7 @@ public class SportEquipmentDAOImpl implements SportEquipmentDAO {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/shop?useSSL=false", "root", "root");
 			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.append("INSERT INTO sportequipment(eq_title, eq_firm, eq_price,eq_category) VALUES(");
+			stringBuilder.append("INSERT INTO sportequipment(eq_title, eq_firm, eq_price,eq_category) VALUES(");// а PreparedStatement кто проходил?
 			stringBuilder.append("\"" + title + "\",\"");
 			stringBuilder.append(firm + "\",");
 			stringBuilder.append(price + ",\"");
@@ -37,7 +37,7 @@ public class SportEquipmentDAOImpl implements SportEquipmentDAO {
 				connection.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e.printStackTrace();// надеюсь, потом заментся на лог
 			}
 		}
 
@@ -94,7 +94,7 @@ public class SportEquipmentDAOImpl implements SportEquipmentDAO {
 	@Override
 	public void showEquipment() throws SQLException {
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/shop?useSSL=false", "root", "root");
-		Statement statement;
+		Statement statement;// где Try-catch?
 		statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery("select * from sportequipment");
 		while (resultSet.next()) {
